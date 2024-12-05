@@ -1,20 +1,69 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<ion-content>
+  <ion-header>
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title>Selamat Datang, {{ username }}!</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="logout()">
+          <ion-icon name="log-out-outline"></ion-icon>
+          Logout
+        </ion-button>
+      </ion-buttons>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-segment [(ngModel)]="selectedSegment">
+    <ion-segment-button value="toys">
+      <ion-label>Toys</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="stories">
+      <ion-label>Stories</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-content>
+    <!-- Toys Section -->
+    <ng-container *ngIf="selectedSegment === 'toys'">
+      <ion-button expand="block" (click)="openToyModal()">
+        Tambah Toy
+      </ion-button>
+      
+      <ion-list>
+        <ion-item *ngFor="let toy of toys">
+          <ion-label>
+            <h2>{{ toy.toy_name }}</h2>
+            <p>{{ toy.toy_description }}</p>
+          </ion-label>
+          <ion-button slot="end" fill="clear" (click)="openToyModal(toy)">
+            <ion-icon name="create-outline"></ion-icon>
+          </ion-button>
+          <ion-button slot="end" fill="clear" color="danger" (click)="deleteToy(toy.toy_id)">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-list>
+    </ng-container>
+
+    <!-- Stories Section -->
+    <ng-container *ngIf="selectedSegment === 'stories'">
+      <ion-button expand="block" (click)="openStoryModal()">
+        Tambah Story
+      </ion-button>
+      
+      <ion-list>
+        <ion-item *ngFor="let story of stories">
+          <ion-label>
+            <h2>{{ story.story_title }}</h2>
+            <p>{{ story.toy_name }}</p>
+            <p>{{ story.story_content }}</p>
+          </ion-label>
+          <ion-button slot="end" fill="clear" (click)="openStoryModal(story)">
+            <ion-icon name="create-outline"></ion-icon>
+          </ion-button>
+          <ion-button slot="end" fill="clear" color="danger" (click)="deleteStory(story.story_id)">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-list>
+    </ng-container>
+  </ion-content>
 </ion-content>

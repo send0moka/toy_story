@@ -1,0 +1,40 @@
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="ion-text-center ion-padding">
+    <h2>Login ke Toy Story Catalog</h2>
+  </div>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-icon slot="start" name="person-outline"></ion-icon>
+        <ion-input 
+          label="Username" 
+          labelPlacement="floating" 
+          [(ngModel)]="username"
+          placeholder="Masukkan username">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon slot="start" name="lock-closed-outline"></ion-icon>
+        <ion-input 
+          label="Password" 
+          labelPlacement="floating" 
+          [(ngModel)]="password"
+          type="password"
+          placeholder="Masukkan password">
+        </ion-input>
+      </ion-item>
+
+      <ion-button expand="block" class="ion-margin-top" (click)="login()">
+        <ion-icon slot="start" name="log-in-outline"></ion-icon>
+        Login
+      </ion-button>
+      <ion-item lines="none" class="ion-text-center ion-margin-top">
+        <ion-label>
+          Belum punya akun? <a href="/register">Daftar di sini</a>
+        </ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
