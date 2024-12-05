@@ -1,0 +1,7 @@
+{
+  "name": "toy_story",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
